@@ -17,6 +17,8 @@ import 'src/test_http_client.dart';
 
 void main() {
   testWidgets('Smoke test', (WidgetTester tester) async {
+    HttpOverrides.global = TestHttpOverrides();
+    addTearDown(() => HttpOverrides.global = null);
     // Build the app and trigger a frame.
     await tester.pumpWidget(
       const CatalogGalleryApp(splashFactory: NoSplash.splashFactory),
